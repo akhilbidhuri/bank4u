@@ -1,4 +1,4 @@
-printf "\n\n\t\tBANK4U API SERVICE\n\n"
+printf "\n\n\t\t\tBANK4U API SERVICE\n\n"
 
 #request to get Token
 printf "\n\nrequest to get Token\n"
@@ -6,7 +6,7 @@ curl -X GET \
     'https://bank4u.herokuapp.com/api/v1/getToken'\
 
 #-------------------request to get branch details given the IFSC------------------------#
-printf "-------------------request to get branch details given the IFSC------------------------"
+printf "\n\n-------------------request to get branch details given the IFSC------------------------"
 #request with all correct details
 printf "\n\nrequest with all correct details\n"
 curl -X GET \
