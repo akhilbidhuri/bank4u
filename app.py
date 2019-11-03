@@ -40,6 +40,9 @@ db = SQLAlchemy(app)
 
 from db_utils import *
 def token_required(f):
+    '''
+        Decorator for validating the token. 
+    '''
     @wraps(f)
     def decorated(*args, **kwargs):
         token = request.headers.get('token', 0)
@@ -60,10 +63,10 @@ def token_required(f):
 @cross_origin(origin='*')
 def getToken():
     '''
-        Endpoint to get the token.
-        Accepts post request.
-        Expects Nothing.
-        Returns a JWT in JSON.
+        Desceription : Endpoint to get the token WHICH is valid for only 5 days.
+        Accepts POST/GET request.
+        Params : Expects Nothing.
+        Returns : a JWT in JSON.
     '''
     token = jwt.encode({'exp': datetime.datetime.now() + datetime.timedelta(days=5)}, app.config['SECRET_KEY'])
     return jsonify({'token':token.decode('utf-8')})
@@ -73,10 +76,10 @@ def getToken():
 @token_required
 def getDetails():
     '''
-        Endpoint to get the bank details given the IFSC.
-        Accepts get request.
-        Expects JWT in header and IFSC in param.
-        Returns bank details if IFSC exists in Database otherwise an error message in JSON Format.
+        Desceription : Endpoint to get the bank details given the IFSC.
+        Accepts GET request.
+        Params : Expects JWT in header and IFSC in param.
+        Returns : bank details if IFSC exists in Database otherwise an error message in JSON Format.
     '''
     try:
         ifsc = request.args['ifsc']
@@ -89,10 +92,10 @@ def getDetails():
 @token_required
 def getBranches():
     '''
-        Endpoint to fetch all details of branches, given bank name and a city. This API should also support limit and offset parameters.
-        Accepts get request.
-        Expects JWT in header and bank name, city, offset(optional), limit(optional) in params.
-        Returns branches details if bank name & city exists in Database otherwise an error message in JSON Format.
+        Desceription : Endpoint to fetch all details of branches, given bank name and a city. This API should also support limit and offset parameters.
+        Accepts GET request.
+        Params : Expects JWT in header and bank name, city, offset(optional), limit(optional) in params.
+        Returns : branches details if bank name & city exists in Database otherwise an error message in JSON Format.
         Default values: offset=1, limit=10
     '''
     default_offset, default_limit = 1, 10
