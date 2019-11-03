@@ -59,6 +59,11 @@ def token_required(f):
 #
 # Routes
 #
+@app.route('/', methods=['POST', 'GET'])
+@cross_origin(origin='*')
+def mainroute():
+    return "WELCOME TO THE BANK4U Service, Head to https://github.com/akhilbidhuri/bank4u for details of endpoints and more!!!"
+
 @app.route('/api/v1/getToken', methods=['POST', 'GET'])
 @cross_origin(origin='*')
 def getToken():
