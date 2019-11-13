@@ -1,7 +1,7 @@
 bank4u
 
 Banks Branch details API service.
-Changes Have been made to the SQL script to be able to accomodate 10000 rows in Heroku by creating a Trigger.
+Changes Have been made to the SQL script(included) to be able to accomodate 10000 rows in Heroku by creating a Trigger.
 
 Endpoints:
 
